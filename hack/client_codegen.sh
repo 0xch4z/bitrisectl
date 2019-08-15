@@ -7,9 +7,9 @@ ROOT_DIR=$(cd "$DIR/.." && pwd)
 SWAGGER_SPEC="$ROOT_DIR/swagger.json"
 BITRISE_BASEDIR="$ROOT_DIR/bitrise"
 
-echo $DIR $ROOT_DIR $SWAGGER_SPEC
+GO_PKG=github.com/charliekenney23/bitrisectl
 
-REMOTE_SWAGGER_SPEC='https://api-docs.bitrise.io/docs/swagger.json'
+REMOTE_SWAGGER_SPEC=https://api-docs.bitrise.io/docs/swagger.json
 
 GO_SWAGGER_IMG=quay.io/goswagger/swagger
 
@@ -31,12 +31,14 @@ generate_client() {
 
   echo "Generating Bitrise API client in '$ROOT_DIR'..."
 
+  local workdir="/go/src/$GO_PKG"
   docker run --rm -it \
-    -e GO111MODULE=on \
-    -v "$ROOT_DIR":/var/work \
-    -w /var/work \
+    -e GOPATH=/go \
+    -e GO111MODULE=off \
+    -v "$ROOT_DIR":"$workdir" \
+    -w "$workdir" \
     "$GO_SWAGGER_IMG" generate client \
-    --target=/var/work/bitrise
+    --target=bitrise
 }
 
 fetch_swagger_spec

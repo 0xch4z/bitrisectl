@@ -17,7 +17,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/charliekenney23/bitrisectl/var/work/bitrise/models"
+	models "github.com/charliekenney23/bitrisectl/bitrise/models"
 )
 
 // NewAppFinishParams creates a new AppFinishParams object
