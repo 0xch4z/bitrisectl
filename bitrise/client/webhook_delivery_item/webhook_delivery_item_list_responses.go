@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/charliekenney23/bitrisectl/var/work/bitrise/models"
+	models "github.com/charliekenney23/bitrisectl/bitrise/models"
 )
 
 // WebhookDeliveryItemListReader is a Reader for the WebhookDeliveryItemList structure.
